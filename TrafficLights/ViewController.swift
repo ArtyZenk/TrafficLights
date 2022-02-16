@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
     // MARK: - Elements
     private lazy var redLight: UIView = {
         let redLight = UIView()
