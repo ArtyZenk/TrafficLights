@@ -132,6 +132,7 @@ extension ViewController {
     }
 }
 
+// MARK: - Metric
 extension ViewController {
     enum Metric {
         static let redLightWidth: CGFloat = 100
