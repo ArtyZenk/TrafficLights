@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     private lazy var redLight: UIView = {
         let redLight = UIView()
         redLight.backgroundColor = .systemRed
+        redLight.alpha = lightIsOff
         redLight.translatesAutoresizingMaskIntoConstraints = false
         return redLight
     }()
@@ -23,6 +24,7 @@ class ViewController: UIViewController {
     private lazy var yellowLight: UIView = {
         let yellowLight = UIView()
         yellowLight.backgroundColor = .systemYellow
+        yellowLight.alpha = lightIsOff
         yellowLight.translatesAutoresizingMaskIntoConstraints = false
         return yellowLight
     }()
@@ -30,6 +32,7 @@ class ViewController: UIViewController {
     private lazy var greenLight: UIView = {
         let greenLight = UIView()
         greenLight.backgroundColor = .systemGreen
+        greenLight.alpha = lightIsOff
         greenLight.translatesAutoresizingMaskIntoConstraints = false
         return greenLight
     }()
@@ -52,6 +55,10 @@ class ViewController: UIViewController {
         return button
     }()
     
+    private var currentLight = CurrentLight.red
+    private let lightIsOn: CGFloat = 1
+    private let lightIsOff: CGFloat = 0.3
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +67,12 @@ class ViewController: UIViewController {
         setupLayout()
         setupView()
     }
-
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        redLight.layer.cornerRadius = redLight.frame.width / 2
+        yellowLight.layer.cornerRadius = yellowLight.frame.width / 2
+        greenLight.layer.cornerRadius = greenLight.frame.width / 2
+    }
 }
 
 extension ViewController {
@@ -72,12 +83,31 @@ extension ViewController {
         lightsStackView.addArrangedSubview(redLight)
         lightsStackView.addArrangedSubview(yellowLight)
         lightsStackView.addArrangedSubview(greenLight)
-    }
-    
-    private func setupLayout() {
         
     }
     
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            redLight.widthAnchor.constraint(equalToConstant: 100),
+            redLight.heightAnchor.constraint(equalToConstant: 100),
+
+            yellowLight.widthAnchor.constraint(equalToConstant: 100),
+            yellowLight.heightAnchor.constraint(equalToConstant: 100),
+
+            greenLight.widthAnchor.constraint(equalToConstant: 100),
+            greenLight.heightAnchor.constraint(equalToConstant: 100),
+
+            lightsStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            lightsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            startButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            startButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
     private func setupView() {
+        view.backgroundColor = .systemGray3
     }
 }
