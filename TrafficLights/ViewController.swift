@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum CurrentLight {
+    case red, yellow, green
+}
+
 class ViewController: UIViewController {
     // MARK: - Elements
     private lazy var redLight: UIView = {
@@ -51,9 +55,29 @@ class ViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        setupHierarch()
+        setupLayout()
+        setupView()
     }
 
 
 }
 
+extension ViewController {
+    private func setupHierarch() {
+        view.addSubview(lightsStackView)
+        view.addSubview(startButton)
+        
+        lightsStackView.addArrangedSubview(redLight)
+        lightsStackView.addArrangedSubview(yellowLight)
+        lightsStackView.addArrangedSubview(greenLight)
+    }
+    
+    private func setupLayout() {
+        
+    }
+    
+    private func setupView() {
+    }
+}
