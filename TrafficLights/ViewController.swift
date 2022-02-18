@@ -116,7 +116,7 @@ extension ViewController {
             yellowLight.heightAnchor.constraint(equalToConstant: Metric.yellowLightHeight),
 
             greenLight.widthAnchor.constraint(equalToConstant: Metric.greenLightWidth),
-                                              greenLight.heightAnchor.constraint(equalToConstant: Metric.greenLightHeight),
+            greenLight.heightAnchor.constraint(equalToConstant: Metric.greenLightHeight),
 
             lightsStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Metric.lightsStackViewTopOfSet),
             lightsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
